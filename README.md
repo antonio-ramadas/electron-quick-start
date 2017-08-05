@@ -1,4 +1,6 @@
-# electron-quick-start
+# electron-tray
+
+The app icon disappears and it is created a tray. This is for macOS only. Therefore, an icon will appear on the menu bar which when clicked toggles the window.
 
 **Clone and run for a quick way to see Electron in action.**
 
