@@ -10,6 +10,7 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let tray
 
 function createWindow () {
   // Create the browser window.
@@ -32,6 +33,29 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  mainWindow.toggle = function() {
+    if (this.isVisible()) {
+			this.hide()
+		} else {
+			this.show()
+		}
+  }
+
+  mainWindow.setVisibleOnAllWorkspaces(true);
+  mainWindow.setAlwaysOnTop(true);
+
+  tray = new electron.Tray('IconMenuBarTemplate.png');
+
+	tray.on('click', () => {
+		mainWindow.toggle()
+	})
+
+	tray.on('double-click', () => {
+		mainWindow.toggle()
+  })
+
+  app.dock.hide();
 }
 
 // This method will be called when Electron has finished
